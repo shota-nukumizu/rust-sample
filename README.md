@@ -10,6 +10,55 @@ fn main() {
 }
 ```
 
+# 基本内容
+
+Rustでは、基本的に`main`関数の中に実行する処理を書く。(**DartやKotlinと類似している**)
+
+## データ型
+
+Rustで扱うデータ型は以下の通り。PythonやTypeScriptよりも細かく分類されており、非常に多い。
+
+* 符号付き整数(`i8`, `i16`, `i32`, `i64`, `i128`, `isize`)
+* 符号なし整数(`u8`, `u16`, `u32`, `u64`, `u128`, `usize`)
+* 浮動小数点(`f32`, `f64`)
+* `char`型：一文字の文字列
+* 真偽値(`bool`)：`true`あるいは`false`
+* 単位型：空のtuple
+* 配列：`[1, 2, 3]`
+* タプル(`tuple`)：`(1, false)`
+
+変数は常に型のアノテーションを付けられる。数値はサフィックスあるいはデフォルトでアノテーションを付けられる。整数のデフォルトは`i32`で、浮動小数点のデフォルトは`f64`である。
+
+あと、Rustは文脈から型を推定できる。
+
+```rs
+fn main() {
+    // Variables can be type annotated.
+    let logical: bool = true;
+
+    let a_float: f64 = 1.0;  // Regular annotation
+    let an_integer   = 5i32; // Suffix annotation
+
+    // Or a default will be used.
+    let default_float   = 3.0; // `f64`
+    let default_integer = 7;   // `i32`
+    
+    // A type can also be inferred from context 
+    let mut inferred_type = 12; // Type i64 is inferred from another line
+    inferred_type = 4294967296i64;
+    
+    // A mutable variable's value can be changed.
+    let mut mutable = 12; // Mutable `i32`
+    mutable = 21;
+    
+    // Error! The type of a variable can't be changed.
+    mutable = true;
+    
+    // Variables can be overwritten with shadowing.
+    let mutable = true;
+}
+```
+
 # サンプルプログラム
 
 ## 素数判定
@@ -145,6 +194,7 @@ mod test {
         assert!(is_sorted(&ve2));
     }
 }
+// 実行するとエラーが生じる。現時点では原因を特定できていない。
 ```
 
 # 感想
