@@ -116,6 +116,44 @@ fn main() {
 //      1
 ```
 
+## リテラル
+
+整数`1`、浮動小数点`1.2`、文字`'a'`、文字列`"abc"、真偽値`true`や単位型はリテラルを用いて表現できる。
+
+整数は16進数、8進数、2進数にそれぞれ接頭辞を付けて表現できる。(例：`0x`, `0o`と`0b`)読みやすくするために、数値リテラルにアンダースコア(`_`)を挿入できる。
+
+コンパイラに使用するリテラルの型を伝える必要がある。今のところ、リテラルが符号なし32ビット整数であることを示すには`i32`サフィックスを使うことにする。
+
+Rustで使用できる演算子とその優先順位は、他のC系言語と同じ。
+
+
+```rs
+fn main() {
+    // Integer addition
+    println!("1 + 2 = {}", 1u32 + 2);
+
+    // Integer subtraction
+    println!("1 - 2 = {}", 1i32 - 2);
+    // TODO ^ Try changing `1i32` to `1u32` to see why the type is important
+
+    // Short-circuiting boolean logic
+    println!("true AND false is {}", true && false);
+    println!("true OR false is {}", true || false);
+    println!("NOT true is {}", !true);
+
+    // Bitwise operations
+    println!("0011 AND 0101 is {:04b}", 0b0011u32 & 0b0101);
+    println!("0011 OR 0101 is {:04b}", 0b0011u32 | 0b0101);
+    println!("0011 XOR 0101 is {:04b}", 0b0011u32 ^ 0b0101);
+    println!("1 << 5 is {}", 1u32 << 5);
+    println!("0x80 >> 2 is 0x{:x}", 0x80u32 >> 2);
+
+    // Use underscores to improve readability!
+    println!("One million is written as {}", 1_000_000u32);
+}
+
+```
+
 # サンプルプログラム
 
 ## 素数判定
